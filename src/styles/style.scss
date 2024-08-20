@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "fonts";
+// @import "reset"; commented due to tailwind basic style reseting.
+@import "variables";
