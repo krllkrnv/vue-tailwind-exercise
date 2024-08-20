@@ -1,7 +1,7 @@
 <template>
-  <div>
-
-  </div>
+    <footer>
+        This is the footer
+    </footer>
 </template>
 
 <script setup lang="ts">

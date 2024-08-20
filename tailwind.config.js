@@ -13,6 +13,21 @@ export default {
 
       "2xl": "1536px",
     },
+    extend: {
+      fontFamily: {
+        main: ["Inter"],
+      },
+      width: {
+        '100': "25rem",
+      },
+    },
+    fontSize: {
+      sm: "0.625rem",
+      base: "0.875rem",
+      xl: "1rem",
+      "2xl": "1.375rem",
+      "4xl": "2rem",
+    },
   },
   plugins: [],
 };
