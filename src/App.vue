@@ -1,7 +1,7 @@
 <template>
-  <div class="font-main mx-auto">
+  <div class="font-main">
     <header-component></header-component>
-    <main-page class=""></main-page>
+    <main-page></main-page>
   </div>
 </template>
 

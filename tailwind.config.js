@@ -14,11 +14,20 @@ export default {
       "2xl": "1536px",
     },
     extend: {
+      colors: {
+        primary: "#3E97FF",
+        "primary-active": "#2884EF",
+        "primary-light": "#EEF6FF",
+        "text-secondary": "#7E8299",
+      },
       fontFamily: {
         main: ["Inter"],
       },
       width: {
-        '100': "25rem",
+        100: "25rem",
+      },
+      height: {
+        60: "15.625rem",
       },
     },
     fontSize: {
