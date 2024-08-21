@@ -1,7 +1,22 @@
 <template>
   <header
-    class="bg-black text-white flex h-16 items-center px-14 gap-20 font-semibold"
+    class="bg-black text-white flex h-16 items-center px-6 gap-4 lg:px-14 lg:gap-20 font-semibold"
   >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6 lg:hidden"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+      />
+    </svg>
+
     <a href="#">
       <svg
         width="150"
@@ -33,7 +48,7 @@
       </svg>
     </a>
     <div>
-      <ul class="inline-flex gap-5 items-center">
+      <ul class="hidden lg:inline-flex gap-5 items-center">
         <li><a class="" href="#">Главная</a></li>
         <li><a href="#">Блог</a></li>
       </ul>

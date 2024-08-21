@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-col gap-2.5">
     <img
-      class="w-100 h-60 object-cover rounded-xl"
+      class="h-60 object-cover rounded-xl"
       src="../images/hiking.jpg"
       alt=""
     />
     <div
-      class="flex gap-2.5 flex-row text-base text-text-secondary font-medium"
+      class="flex gap-2.5 flex-row items-center text-base text-text-secondary font-medium"
     >
       <span>9 Апр</span>
-      <span>.</span>
-      <div class="flex flex-row">
+      <span class="text-sm">•</span>
+      <div class="flex flex-row gap-1">
         <svg
           width="20"
           height="20"
@@ -28,8 +28,8 @@
         </svg>
         <span>2 мин</span>
       </div>
-      <span>.</span>
-      <div class="flex flex-row">
+      <span class="text-sm">•</span>
+      <div class="flex flex-row gap-1">
         <svg
           width="20"
           height="20"
@@ -45,9 +45,19 @@
         <span>1 комментарий</span>
       </div>
     </div>
+    <h2 class="text-2xl font-semibold">Вдохновение в каждом шаге</h2>
+    <p class="font-medium">
+      Наши путешественники находят вдохновение в каждом шаге своего пути.
+    </p>
+    <div class="flex flex-row gap-2.5">
+      <chip-component></chip-component>
+      <chip-component></chip-component>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ChipComponent from "./ChipComponent.vue";
+</script>
 
 <style scoped></style>

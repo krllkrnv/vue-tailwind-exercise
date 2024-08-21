@@ -19,6 +19,7 @@ export default {
         "primary-active": "#2884EF",
         "primary-light": "#EEF6FF",
         "text-secondary": "#7E8299",
+        "bg-secondary": "#F9F9F9 ",
       },
       fontFamily: {
         main: ["Inter"],

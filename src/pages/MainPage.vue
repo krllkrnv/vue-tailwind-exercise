@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-gray-200 flex flex-col">
+  <div class=" flex flex-col">
     <search-component class="mb-5"></search-component>
     <news-list class="self-center"></news-list>
   </div>
