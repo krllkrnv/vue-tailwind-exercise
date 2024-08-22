@@ -1,5 +1,5 @@
 <template>
-  <div class="font-main h-full bg-gray-200">
+  <div class="font-main h-full">
     <header-component></header-component>
     <main-page></main-page>
   </div>
