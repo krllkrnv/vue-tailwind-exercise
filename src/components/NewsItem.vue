@@ -1,11 +1,13 @@
 <template>
-  <!-- Non-modal -->
   <div class="flex flex-col gap-2.5 select-none">
+    <!-- Modal exit controls -->
+
+    <!-- Modal -->
     <div v-if="modal" class="flex flex-col-reverse gap-2.5">
       <div
         class="flex gap-2.5 flex-row items-center text-base text-text-secondary font-medium"
       >
-        <span>9 Апр</span>
+        <span>{{ formattedDate }}</span>
         <span class="text-sm">•</span>
         <div class="flex flex-row gap-1">
           <svg
@@ -23,7 +25,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          <span>2 мин</span>
+          <span>{{ props.post.readingTime }} мин</span>
         </div>
         <span class="text-sm">•</span>
         <div class="flex flex-row gap-1">
@@ -39,24 +41,45 @@
               fill="#7E8299"
             />
           </svg>
-          <span>1 комментарий</span>
+          <span>{{ commentsAmount }}</span>
         </div>
       </div>
-      <h2 class="text-2xl font-semibold">{{ props.post.title }}</h2>
+      <div class="flex flex-row justify-between">
+        <h2 class="text-2xl font-semibold leading-none">
+          {{ props.post.title }}
+        </h2>
+        <svg
+          @click="handleExitClick"
+          class="cursor-pointer"
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11.175 10L14.1667 7.03333C14.3258 6.87199 14.4143 6.65404 14.4127 6.42744C14.4112 6.20083 14.3197 5.98413 14.1583 5.825C13.997 5.66587 13.779 5.57735 13.5524 5.57891C13.3258 5.58047 13.1091 5.67199 12.95 5.83333V5.83333L9.99999 8.825L7.04999 5.89166C6.89386 5.73645 6.68265 5.64934 6.46249 5.64934C6.24234 5.64934 6.03113 5.73645 5.87499 5.89166C5.79689 5.96913 5.73489 6.0613 5.69258 6.16285C5.65028 6.2644 5.6285 6.37332 5.6285 6.48333C5.6285 6.59334 5.65028 6.70226 5.69258 6.80381C5.73489 6.90536 5.79689 6.99753 5.87499 7.075L8.82499 10L5.83333 12.9667C5.6742 13.128 5.58568 13.3459 5.58724 13.5726C5.5888 13.7992 5.68032 14.0159 5.84166 14.175C6.003 14.3341 6.22095 14.4226 6.44755 14.4211C6.67416 14.4195 6.89086 14.328 7.04999 14.1667L9.99999 11.175L12.95 14.1083C13.1061 14.2635 13.3173 14.3507 13.5375 14.3507C13.7576 14.3507 13.9689 14.2635 14.125 14.1083C14.2031 14.0309 14.2651 13.9387 14.3074 13.8371C14.3497 13.7356 14.3715 13.6267 14.3715 13.5167C14.3715 13.4067 14.3497 13.2977 14.3074 13.1962C14.2651 13.0946 14.2031 13.0025 14.125 12.925L11.175 10Z"
+            fill="#A1A5B7"
+          />
+        </svg>
+      </div>
     </div>
     <img
       :class="`h-60 object-cover rounded-xl ${
-        clickable ? 'cursor-pointer' : ''
-      }`"
+        clickable ? 'cursor-pointer ' : ' '
+      } ${modal ? 'max-h-96 h-3/6' : ' '}`"
       :src="props.post.imageUrl"
       alt="Post image"
       @click="handleImageClick"
     />
+
+    <!-- Non-modal -->
+
     <div v-if="!modal" class="flex flex-col gap-2.5">
       <div
         class="flex gap-2.5 flex-row items-center text-base text-text-secondary font-medium"
       >
-        <span>9 Апр</span>
+        <span>{{ formattedDate }}</span>
         <span class="text-sm">•</span>
         <div class="flex flex-row gap-1">
           <svg
@@ -74,7 +97,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          <span>2 мин</span>
+          <span>{{ props.post.readingTime }} мин</span>
         </div>
         <span class="text-sm">•</span>
         <div class="flex flex-row gap-1">
@@ -90,7 +113,7 @@
               fill="#7E8299"
             />
           </svg>
-          <span>1 комментарий</span>
+          <span>{{ commentsAmount }}</span>
         </div>
       </div>
       <h2 class="text-2xl font-semibold">{{ props.post.title }}</h2>
@@ -108,14 +131,76 @@
         :chip="chip"
       ></chip-component>
     </div>
-    <div v-if="modal" class="flex flex-col">
-      <h2> Комментариев </h2>
+
+    <!-- Comments and Controls -->
+    <div v-if="modal" class="flex flex-col gap-2.5">
+      <div class="flex flex-row gap-1.5">
+        <h2 class="font-semibold">Комментариев</h2>
+        <span class="font-medium text-text-secondary">{{
+          props.post.comments.length
+        }}</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        <textarea
+          v-model="comment"
+          :class="`w-full transition-all placeholder-gray-400 h-11 lg:h-32 resize-none rounded-md p-3 outline outline-gray-200 outline-1 font-medium ${
+            comment.length > 250
+              ? ' outline-error focus:outline-error'
+              : 'focus:outline-primary'
+          }`"
+          placeholder="Введите комментарий"
+          type="text"
+        />
+        <div class="flex flex-row">
+          <span class="text-text-secondary text-[0.75rem]">
+            <span :class="isCommentLengthOverLimit ? 'text-error' : ''">
+              {{ comment.length }}</span
+            >
+            из 250 символов
+          </span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+
+      <div class="flex flex-row h-10 self-end gap-2.5 text-[0.813rem]">
+        <button
+          class="font-bold w-[7.5rem] rounded-md text-primary bg-primary-light"
+          @click="handleCancelClick"
+        >
+          Отмена
+        </button>
+        <button
+          :class="`transition font-semibold w-[7.5rem] rounded-md ${
+            !isPublishButtonClickable
+              ? 'text-slate-50 bg-blue-200'
+              : 'text-primary-light bg-primary'
+          }`"
+          :disabled="!isPublishButtonClickable"
+          @click="handlePublishClick"
+        >
+          Опубликовать
+        </button>
+      </div>
+
+      <!-- Comments -->
+
+      <div v-if="props.post.comments.length">
+        <comment-component
+          v-for="comment in sortedComments"
+          :key="comment.date"
+          :comment="comment"
+        ></comment-component>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import ChipComponent from "./ChipComponent.vue";
+import CommentComponent from "./CommentComponent.vue";
+
+import { computed, ref } from "vue";
 
 import { useStore } from "vuex";
 
@@ -136,9 +221,68 @@ const props = defineProps({
   },
 });
 
+const comment = ref("");
+
 const handleImageClick = () => {
   store.commit("SET_PICKED_POST", props.post);
 };
+
+const handleCancelClick = () => {
+  comment.value = "";
+};
+
+const handlePublishClick = () => {
+  store.commit("ADD_COMMENT_TO_POST", {
+    authorId: Math.random(),
+    authorName: "Test User",
+    date: new Date(Date.now()),
+    text: comment.value,
+  });
+  comment.value = "";
+};
+
+const handleExitClick = () => {
+  store.commit("SET_PICKED_POST", {});
+};
+
+const isCommentLengthOverLimit = computed(() => {
+  return comment.value.length > 250;
+});
+
+const isPublishButtonClickable = computed(() => {
+  return comment.value.length > 0 && !isCommentLengthOverLimit.value;
+});
+
+const sortedComments = computed(() => {
+  return props.post.comments.sort(
+    (a: { date: Date }, b: { date: Date }) =>
+      b.date.getTime() - a.date.getTime()
+  );
+});
+// GPT-coding >:) *lazy to do it by myself, also time-consuming..*
+
+const commentsAmount = computed(() => {
+  const count = props.post.comments.length;
+  const lastDigit = count % 10;
+  const lastTwoDigits = count % 100;
+
+  if (lastDigit === 1 && lastTwoDigits !== 11) {
+    return `${count} комментарий`;
+  } else if (
+    lastDigit >= 2 &&
+    lastDigit <= 4 &&
+    (lastTwoDigits < 12 || lastTwoDigits > 14)
+  ) {
+    return `${count} комментария`;
+  } else {
+    return `${count} комментариев`;
+  }
+});
+
+const formattedDate = computed(() => {
+  const options = { day: "numeric", month: "short" };
+  return props.post.date.toLocaleDateString("ru-RU", options).replace(".", "");
+});
 </script>
 
 <style scoped></style>

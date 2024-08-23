@@ -48,14 +48,16 @@
       </svg>
     </a>
     <div>
-      <ul class="hidden lg:inline-flex gap-5 items-center">
-        <li><a class="" href="#">Главная</a></li>
-        <li><a href="#">Блог</a></li>
+      <ul class="hidden lg:flex gap-5">
+        <li class="flex items-center h-8 px-3.5">
+          <a class="" href="#">Главная</a>
+        </li>
+        <li
+          class="flex items-center h-8 px-3.5 text-primary bg-white bg-opacity-10 rounded-md"
+        >
+          <a href="#">Блог</a>
+        </li>
       </ul>
     </div>
   </header>
 </template>
-
-<script setup lang="ts"></script>
-
-<style scoped></style>

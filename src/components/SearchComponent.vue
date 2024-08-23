@@ -5,7 +5,7 @@
     <div class="hidden md:flex h-20 items-center justify-between">
       <div class="flex items-center h-20">
         <div class="h-10 flex flex-row gap-10 items-center">
-          <a class="text-4xl font-bold" href="#">Блог</a>
+          <a class="text-4xl font-gilroy font-extrabold" href="#">Блог</a>
           <input
             @input="handleSearchChange"
             class="h-full lg:w-100 rounded-md p-3 focus:outline-primary bg-bg-secondary text-base font-medium"
@@ -125,6 +125,12 @@ const areChipsShown = ref(false);
 
 const emit = defineEmits(["search-change", "chip-click", "clear-click"]);
 
+interface Chip {
+  id: number;
+  name: string;
+  selected: boolean;
+}
+
 const tags = reactive([
   { id: 1, name: "Город", selected: false },
   { id: 2, name: "Природа", selected: false },
@@ -136,7 +142,7 @@ const tags = reactive([
   { id: 8, name: "Искусство", selected: false },
 ]);
 
-const handleChipClick = (chip) => {
+const handleChipClick = (chip: Chip) => {
   chip.selected = !chip.selected;
   emit(
     "chip-click",
@@ -149,7 +155,7 @@ const handleClearClick = () => {
   emit("clear-click");
 };
 
-const handleSearchChange = (event) => {
+const handleSearchChange = (event: string) => {
   emit("search-change", event);
 };
 </script>

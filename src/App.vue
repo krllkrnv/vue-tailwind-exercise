@@ -1,8 +1,11 @@
 <template>
   <div class="font-main min-h-screen relative">
-    <modal-window v-if="pickedPost" class="absolute">
+    <modal-window
+      v-if="Object.keys(pickedPost).length"
+      class="overflow-y-scroll absolute"
+    >
       <news-item
-        class="max-w-3xl bg-white w-2/5 p-4 rounded-xl mt-20"
+        class="fixed mx-2.5 overflow-scroll max-w-2xl max-h-[70rem] bg-white p-4 rounded-xl my-20"
         :modal="true"
         :post="pickedPost"
       ></news-item>
@@ -18,13 +21,26 @@ import MainPage from "./pages/MainPage.vue";
 import ModalWindow from "./components/Modalwindow.vue";
 import NewsItem from "./components/NewsItem.vue";
 
-import { computed } from "vue";
+import { computed, watch } from "vue";
 
 import { useStore } from "vuex";
 
 const store = useStore();
 
 const pickedPost = computed(() => store.getters.GET_PICKED_POST);
+
+watch(pickedPost, (newVal) => {
+  const htmlElement = document.getElementById("html-element");
+  if (htmlElement) {
+    if (Object.keys(newVal).length) {
+      htmlElement.style.overflow = "hidden";
+    } else {
+      htmlElement.style.overflow = "";
+    }
+  } else {
+    console.warn("Element with ID 'html-element' not found.");
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>

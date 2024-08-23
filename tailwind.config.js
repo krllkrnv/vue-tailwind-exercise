@@ -20,10 +20,12 @@ export default {
         "primary-light": "#EEF6FF",
         "text-secondary": "#7E8299",
         "bg-secondary": "#F9F9F9 ",
-        "plain": "#A1A5B7",
+        plain: "#A1A5B7",
+        error: "#F1416C",
       },
       fontFamily: {
         main: ["Inter"],
+        gilroy: ["Gilroy"],
       },
       width: {
         100: "25rem",

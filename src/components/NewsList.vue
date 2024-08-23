@@ -7,6 +7,7 @@
       v-for="post in props.posts"
       :post="post"
       :key="post.id"
+      :clickable="true"
     ></news-item>
   </div>
   <div class="w-full px-2.5 xl:px-0 max-w-7xl" v-else>
@@ -16,15 +17,15 @@
 
 <script setup lang="ts">
 import StubComponent from "./StubComponent.vue";
-
 import NewsItem from "./NewsItem.vue";
 
-const props = defineProps({
-  posts: {
-    type: Array,
-    required: true,
-  },
-});
+interface Post {
+  id: number;
+}
+
+const props = defineProps<{
+  posts: Post[];
+}>();
 </script>
 
 <style scoped></style>

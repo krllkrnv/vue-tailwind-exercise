@@ -8,6 +8,19 @@
 // @import "reset"; commented due to tailwind basic style reseting.
 @import "variables";
 
+@layer base {
+  @font-face {
+    font-family: "Gilroy";
+    font-weight: 300;
+    src: url(../fonts/Gilroy-Light.otf) format("opentype");
+  }
+  @font-face {
+    font-family: "Gilroy";
+    font-weight: 800;
+    src: url(../fonts/Gilroy-ExtraBold.otf) format("opentype");
+  }
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.2s ease-in-out;
@@ -20,4 +33,26 @@
 
 html {
   overflow-y: scroll;
+}
+
+textarea {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+textarea {
+  scrollbar-width: none;
+}
+
+.overflow-scroll {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.overflow-scroll::-webkit-scrollbar {
+  display: none;
 }
