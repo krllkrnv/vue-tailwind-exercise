@@ -2,10 +2,10 @@
   <div class="font-main min-h-screen relative">
     <modal-window
       v-if="Object.keys(pickedPost).length"
-      class="overflow-y-scroll absolute"
+      class="overflow-y-scroll absolute z-10"
     >
       <news-item
-        class="fixed mx-2.5 overflow-scroll max-w-2xl max-h-[70rem] bg-white p-4 rounded-xl my-20"
+        class="fixed mx-2.5 overflow-scroll max-w-2xl bg-white p-4 rounded-xl my-20"
         :modal="true"
         :post="pickedPost"
       ></news-item>

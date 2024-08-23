@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2.5 select-none">
+  <div class="flex flex-col gap-2.5 select-none max-h-[80%] md:max-h-none">
     <!-- Modal exit controls -->
 
     <!-- Modal -->
@@ -259,6 +259,7 @@ const sortedComments = computed(() => {
       b.date.getTime() - a.date.getTime()
   );
 });
+
 // GPT-coding >:) *lazy to do it by myself, also time-consuming..*
 
 const commentsAmount = computed(() => {

@@ -36,5 +36,3 @@ const formattedDate = computed(() => {
   return `${day}.${month}.${year} в ${hours}:${minutes}`;
 });
 </script>
-
-<style scoped></style>
