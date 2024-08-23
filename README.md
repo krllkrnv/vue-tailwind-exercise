@@ -1,5 +1,9 @@
-# Vue 3 + TypeScript + Vite
+# Vue 3, JS / TS, Vuex, Tailwind, SASS
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Для запуска проекта:
+cd vue-tailwind-exercise
+npm install
+npm run dev
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+### О проекте
+В данном проекте представлена работа по макету Figma, данные хранятся в Vuex. Верстка адаптивна (Dekstop, Tablet, Phone) и отзывчива. Осуществлена фильтрация данных в сторе по заголовкам и input в верхней части экрана.
