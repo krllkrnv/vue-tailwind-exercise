@@ -1,15 +1,13 @@
 <template>
   <div class="flex flex-col px-8 lg:px-24 bg-white">
     <!-- Tablet + Desktop -->
-
     <div class="hidden md:flex h-20 items-center justify-between">
       <div class="flex items-center h-20">
         <div class="h-10 flex flex-row gap-10 items-center">
           <a class="text-4xl font-gilroy font-extrabold" href="#">Блог</a>
           <input
-            v-model="searchQuery"
+            v-model="searchValue"
             class="h-full lg:w-100 rounded-md p-3 focus:outline-primary bg-bg-secondary text-base font-medium"
-            type="text"
             placeholder="Поиск"
           />
         </div>
@@ -86,7 +84,7 @@
       <div>
         <input
           class="h-10 w-full rounded-md p-3 bg-bg-secondary"
-          type="text"
+          v-model="searchValue"
           placeholder="Поиск"
         />
       </div>
@@ -125,13 +123,13 @@ const areChipsShown = ref(false);
 
 const emit = defineEmits(["search-change", "chip-click", "clear-click"]);
 
-const searchQuery = ref("");
-
 interface Chip {
   id: number;
   name: string;
   selected: boolean;
 }
+
+const searchValue = ref("");
 
 const tags = reactive([
   { id: 1, name: "Город", selected: false },
@@ -157,7 +155,9 @@ const handleClearClick = () => {
   emit("clear-click");
 };
 
-watch(searchQuery, (newValue) => {
+watch(searchValue, (newValue) => {
   emit("search-change", newValue);
 });
 </script>
+
+<style scoped></style>

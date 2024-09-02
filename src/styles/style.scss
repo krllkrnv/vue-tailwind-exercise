@@ -33,6 +33,10 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  touch-action: pan-x pan-y;
+}
+
 textarea {
   overflow: hidden;
   overflow-y: scroll;

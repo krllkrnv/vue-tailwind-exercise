@@ -1,7 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2.5 select-none max-h-[80%] md:max-h-none">
-    <!-- Modal exit controls -->
-
+  <div class="flex flex-col gap-2.5 select-none">
     <!-- Modal -->
     <div v-if="modal" class="flex flex-col-reverse gap-2.5">
       <div
