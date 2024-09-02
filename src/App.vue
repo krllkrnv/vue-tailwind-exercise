@@ -5,7 +5,7 @@
       class="overflow-y-scroll absolute z-10"
     >
       <news-item
-        class="fixed top-20 mx-2.5 overflow-scroll max-h-[80vh] lg:max-h-[70vh] max-w-2xl bg-white p-4 rounded-xl"
+        class="fixed top-[5%] mx-2.5 overflow-scroll max-h-[80vh] lg:max-h-[70vh] max-w-2xl bg-white p-4 rounded-xl"
         :modal="true"
         :post="pickedPost"
       ></news-item>
