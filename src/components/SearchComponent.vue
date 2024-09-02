@@ -7,7 +7,7 @@
         <div class="h-10 flex flex-row gap-10 items-center">
           <a class="text-4xl font-gilroy font-extrabold" href="#">Блог</a>
           <input
-            @input="handleSearchChange"
+            v-model="searchQuery"
             class="h-full lg:w-100 rounded-md p-3 focus:outline-primary bg-bg-secondary text-base font-medium"
             type="text"
             placeholder="Поиск"
@@ -115,7 +115,7 @@
 <script setup lang="ts">
 import ChipComponent from "./ChipComponent.vue";
 
-import { reactive, computed, ref } from "vue";
+import { reactive, computed, ref, watch } from "vue";
 
 const hasSelectedChip = computed(() => {
   return tags.some((chip) => chip.selected);
@@ -124,6 +124,8 @@ const hasSelectedChip = computed(() => {
 const areChipsShown = ref(false);
 
 const emit = defineEmits(["search-change", "chip-click", "clear-click"]);
+
+const searchQuery = ref("");
 
 interface Chip {
   id: number;
@@ -155,8 +157,7 @@ const handleClearClick = () => {
   emit("clear-click");
 };
 
-const handleSearchChange = (event: Event) => {
-  const inputValue = (event.target as HTMLInputElement).value;
-  emit("search-change", inputValue);
-};
+watch(searchQuery, (newValue) => {
+  emit("search-change", newValue);
+});
 </script>

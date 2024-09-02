@@ -55,9 +55,8 @@ const sortedPosts = computed<Post[]>(() => {
   });
 });
 
-const handleSearchChange = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  state.searchQuery = target.value;
+const handleSearchChange = (query: string) => {
+  state.searchQuery = query;
 };
 
 const handleChipClick = (event: string[]) => {
