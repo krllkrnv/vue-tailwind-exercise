@@ -68,11 +68,11 @@
       :class="`h-60 object-cover rounded-xl ${
         clickable ? 'cursor-pointer ' : ' '
       } ${modal ? 'max-h-96 h-3/6' : ' '}`"
-      :src="props.post.imageUrl"
+      src="../images/canyon.jpg"
       alt="Post image"
       @click="handleImageClick"
     />
-
+{{ props.post.imageUrl }}
     <!-- Non-modal -->
 
     <div v-if="!modal" class="flex flex-col gap-2.5">
