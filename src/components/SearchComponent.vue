@@ -155,9 +155,8 @@ const handleClearClick = () => {
   emit("clear-click");
 };
 
-const handleSearchChange = (event: string) => {
-  emit("search-change", event);
+const handleSearchChange = (event: Event) => {
+  const inputValue = (event.target as HTMLInputElement).value;
+  emit("search-change", inputValue);
 };
 </script>
-
-<style scoped></style>

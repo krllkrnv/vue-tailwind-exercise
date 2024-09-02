@@ -2,7 +2,7 @@
   <div class="flex flex-row mb-3 px-3 items-center gap-3">
     <img
       class="bg-gray-200 w-10 h-10 rounded-full"
-      src="../images/woman.png"
+      src="/images/woman.png"
       alt="User image"
     />
     <div class="flex flex-col font-medium">

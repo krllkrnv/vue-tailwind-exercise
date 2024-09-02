@@ -33,7 +33,7 @@ watch(pickedPost, (newVal) => {
   const htmlElement = document.getElementById("html-element");
   if (htmlElement) {
     if (Object.keys(newVal).length) {
-      htmlElement.style.overflow = "hidden";
+      htmlElement.style.overflow = "clip";
     } else {
       htmlElement.style.overflow = "";
     }
